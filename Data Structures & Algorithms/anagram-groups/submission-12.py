@@ -1,10 +1,15 @@
+from collections import defaultdict
 class Solution:
-    def twoSum(self, nums: List[int], target: int) -> List[int]:
-        pair_idx = {}
+    def groupAnagrams(self, strs: List[str]) -> List[List[str]]:
+        anagrams = defaultdict(list)
 
-        for i, num in enumerate(nums):
-
-            if target - num in pair_idx:
-                return [pair_idx[target-num], i]
+        for s in strs:
+            sorted_s = tuple(sorted(s))
+            anagrams[sorted_s].append(s)
         
-            pair_idx[num] = i
+        result = []
+
+        for _, val in anagrams.items():
+            result.append(val)
+        
+        return result
